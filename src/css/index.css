@@ -1,6 +1,6 @@
 body {
-  font-family: Arial, sans-serif, system-ui, 
-  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+  font-family: Arial, sans-serif, system-ui,
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
   Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #151414;
   margin: 0;
@@ -19,8 +19,8 @@ body {
 }
 
 h1 {
-  font-size: 1.5em;
-  margin-top: 20px;
+  font-size: 1.3em;
+  margin-top: 15px;
   margin-bottom: 20px;
   text-align: center;
   color: white;
@@ -36,9 +36,9 @@ form {
 .input-container {
   display: flex;
   align-items: center;
-  background: linear-gradient(90deg, #2151ed, #2480dc, #6a1196);
+  background: linear-gradient(90deg, #921dd1, #191ccc, #540e6a);
   border-radius: 20px;
-  padding: 2px; /* Padding to create space for the gradient border */
+  padding: 2px;
   flex: 1;
 }
 
@@ -46,7 +46,7 @@ input[type="text"] {
   padding: 12px 10px;
   font-size: 1em;
   border: none;
-  border-radius: 18px 0 0 18px; /* Match the container's border radius minus padding */
+  border-radius: 18px 0 0 18px;
   background-color: #151414;
   color: white;
   outline: none;
@@ -57,15 +57,15 @@ input[type="text"] {
 button[type="submit"] {
   padding: 12px 20px;
   font-size: 1em;
-  background-color: #007bff;
+  background-color: #9047e3;
   color: #fff;
   border: none;
-  border-radius: 0 18px 18px 0; /* Rounded corners on the right side */
+  border-radius: 0 18px 18px 0;
   cursor: pointer;
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #8431e2;
 }
 
 .icon-container {
@@ -75,7 +75,9 @@ button[type="submit"]:hover {
 }
 
 .icon {
-  font-size: 80px;
+  font-size: 90px;
+  box-shadow: 0 0 5px rgba(135, 136, 135, 0.5);
+  border-radius: 50%;
   filter: invert(1);
 }
 
@@ -85,7 +87,7 @@ button[type="submit"]:hover {
 }
 
 .user-container {
-  max-width: 900px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 20px;
   color: #fff;
@@ -109,11 +111,12 @@ button[type="submit"]:hover {
   width: 160px;
   border-radius: 50%;
   margin-bottom: 10px;
-  border: 2px solid #212121;
 }
 
 .user-info h2 {
   margin: 10px 0;
+  cursor: pointer;
+  font-size: 30px;
 }
 
 .user-stats {
@@ -137,14 +140,16 @@ button[type="submit"]:hover {
   font-size: 1.6em;
   font-weight: bold;
   color: #32bfaa;
+  cursor: pointer;
 }
 
 .user-link {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 20px;
   margin-top: 10px;
-  background-color: #a15eed;
+  background-color: #9047e3;
   color: #ffffff;
+  border: 1px solid rgba(28, 28, 28, 0.5);
   font-weight: 400;
   font-size: 16px;
   text-decoration: none;
@@ -152,12 +157,12 @@ button[type="submit"]:hover {
 }
 
 .user-link:hover {
-  background-color: #9751e7;
+  background-color: #8230e0;
 }
 
 .user-repos {
   margin-top: 50px;
-  width: 100%;
+  width: 600px;
 }
 
 .user-repos h3 {
@@ -167,24 +172,24 @@ button[type="submit"]:hover {
 }
 
 .repo-item {
-  background-color: #232323;
-  box-shadow: 0 0 10px rgba(30, 28, 28, 0.5);
+  background-color: #222123;
+  box-shadow: 0 0 8px rgba(33, 32, 32, 0.5);
   padding: 15px;
   margin-bottom: 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .repo-item .repo-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .repo-item .repo-updated {
-  color: #999797;
+  color: #918d8d;
   font-size: 14px;
 }
 
@@ -195,15 +200,19 @@ button[type="submit"]:hover {
   font-size: 18px;
 }
 
+.repo-item a:hover {
+  text-decoration: underline;
+}
+
 .repo-item p {
   margin: 2px 0;
-  color: #ccc;
+  color: #f4f4f4;
   font-size: 16px;
 }
 
 .user h2 {
   font-size: 20px;
-  color: white;
+  color: #ffffff;
 }
 
 .user img {
@@ -216,7 +225,7 @@ button[type="submit"]:hover {
 .user p {
   font-size: 16px;
   margin: 5px 0;
-  color: white;
+  color: #ffffff;
 }
 
 .user ul {
@@ -227,5 +236,5 @@ button[type="submit"]:hover {
 .user ul li {
   font-size: 16px;
   margin-bottom: 5px;
-  color: white;
+  color: #ffffff;
 }

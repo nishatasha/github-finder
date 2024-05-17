@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { motion } from 'framer-motion';
 
 const Search = () => {
   const [username, setUsername] = useState('');
@@ -12,37 +13,60 @@ const Search = () => {
     e.preventDefault();
     if (username.trim() !== '') {
       try {
-        // Fetch user data
         const response = await axios.get(`https://api.github.com/users/${username}`);
         const userData = response.data;
-        // Redirect to user profile page with username as route parameter
         navigate(`/user/${username}`);
       } catch (error) {
         console.error('Error searching user:', error);
-        // Handle error, e.g., display error message to user
       }
     }
   };
 
+  const transitionSettings = {
+    duration: 0.6,
+    ease: [0.43, 0.13, 0.23, 0.96],
+  };
+
   return (
-    <div className="container">
-      {/* GitHub icon */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: 50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.8, y: -50 }}
+      transition={transitionSettings}
+      className="container"
+    >
       <div className="icon-container">
         <FontAwesomeIcon icon={faGithub} className='icon' />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <input
+          <motion.input
             type="text"
             placeholder="User name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={transitionSettings}
           />
-          <button type="submit">Search</button>
+          <motion.button 
+            type="submit"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={transitionSettings}
+          >
+            Search
+          </motion.button>
         </div>
       </form>
-      <h1>Welcome to GitHub Finder</h1>
-    </div>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={transitionSettings}
+      >
+        Welcome to GitHub Finder
+      </motion.h1>
+    </motion.div>
   );
 };
 

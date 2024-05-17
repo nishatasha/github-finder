@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import '../css/index.css';
 
-// Replace 'your_token' with your actual GitHub API token
 const token = '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';
 
 const User = () => {
@@ -18,18 +18,15 @@ const User = () => {
         const userResponse = await axios.get(`https://api.github.com/users/${username}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        console.log('User Response:', userResponse.data); // Debugging
         setUser(userResponse.data);
 
         const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        console.log('Repos Response:', reposResponse.data); // Debugging
         setRepos(reposResponse.data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-        console.error('Error details:', error.response?.data || error.message);
         setLoading(false);
       }
     };
@@ -37,24 +34,47 @@ const User = () => {
     fetchUser();
   }, [username]);
 
-  console.log('User Data:', user); // Debugging
-  console.log('Repositories:', repos); // Debugging
+  const transitionSettings = {
+    duration: 0.6,
+    ease: [0.43, 0.13, 0.23, 0.96],
+  };
 
   return (
-    <div className="user-container">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, x: 50 }}
+      animate={{ opacity: 1, scale: 1, x: 0 }}
+      exit={{ opacity: 0, scale: 0.8, x: -50 }}
+      transition={transitionSettings}
+      className="user-container"
+    >
       {loading ? (
         <p>Loading...</p>
       ) : user ? (
         <div className="user-profile">
           <div className="user-info">
-            <img 
+            <motion.img 
               src={user.avatar_url} 
               alt={`${user.login}'s avatar`} 
               className="user-avatar" 
               onError={(e) => {e.target.style.display='none'}} 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={transitionSettings}
             />
-            <h2>{user.name || user.login}</h2>
-            <p>{user.bio}</p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={transitionSettings}
+            >
+              {user.name || user.login}
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={transitionSettings}
+            >
+              {user.bio}
+            </motion.p>
             <div className="user-stats">
               <div className="user-stat">
                 <span>{user.public_repos}</span>
@@ -69,9 +89,17 @@ const User = () => {
                 <p>Following</p>
               </div>
             </div>
-            <a href={user.html_url} className="user-link" target="_blank" rel="noopener noreferrer">
+            <motion.a 
+              href={user.html_url} 
+              className="user-link" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={transitionSettings}
+            >
               Go to GitHub
-            </a>
+            </motion.a>
           </div>
           <div className="user-repos">
             <h3>My repositories</h3>
@@ -83,7 +111,7 @@ const User = () => {
                       {repo.name}
                     </a>
                     <span className="repo-updated">
-                      Updated on {new Date(repo.updated_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                      Updated on {new Date(repo.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </span>
                   </div>
                   <p>{repo.description ? repo.description : "No description available"}</p>
@@ -95,7 +123,7 @@ const User = () => {
       ) : (
         <p>User not found!</p>
       )}
-    </div>
+    </motion.div>
   );
 };
 

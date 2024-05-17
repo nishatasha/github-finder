@@ -1,19 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Search from './component/Search';
 import User from './component/User';
 
 const App = () => {
+  const location = useLocation();
+
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/user/:username" element={<User />} />
-        </Routes>
-      </div>
-    </Router>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Search />} />
+        <Route path="/user/:username" element={<User />} />
+      </Routes>
+    </AnimatePresence>
   );
 };
 
-export default App;
+const AppWithRouter = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWithRouter;
