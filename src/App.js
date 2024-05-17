@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import Search from './component/Search';
-import User from './component/User';
+import Search from './pages/Search';
+import User from './pages/User';
 
 const App = () => {
   const location = useLocation();
@@ -18,7 +18,7 @@ const App = () => {
 };
 
 const AppWithRouter = () => (
-  <Router>
+  <Router basename="/github-finder">
     <App />
   </Router>
 );

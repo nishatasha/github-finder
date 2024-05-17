@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/index.css';
-import { motion } from 'framer-motion';
 
 const token = process.env.REACT_APP_GITHUB_TOKEN;
 
@@ -11,9 +10,13 @@ const User = () => {
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const userResponse = await axios.get(`https://api.github.com/users/${username}`, {
           headers: { Authorization: `Bearer ${token}` }
@@ -24,9 +27,16 @@ const User = () => {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRepos(reposResponse.data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+        if (error.response) {
+          console.error('Error details:', error.response.data);
+          setError(error.response.data);
+        } else {
+          console.error('Error details:', error.message);
+          setError({ message: error.message });
+        }
+      } finally {
         setLoading(false);
       }
     };
@@ -35,14 +45,11 @@ const User = () => {
   }, [username]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="user-container"
-    >
+    <div className="user-container">
       {loading ? (
         <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error.message}</p>
       ) : user ? (
         <div className="user-profile">
           <div className="user-info">
@@ -82,7 +89,7 @@ const User = () => {
                       {repo.name}
                     </a>
                     <span className="repo-updated">
-                      Updated on {new Date(repo.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      Updated on {new Date(repo.updated_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </span>
                   </div>
                   <p>{repo.description ? repo.description : "No description available"}</p>
@@ -94,7 +101,7 @@ const User = () => {
       ) : (
         <p>User not found!</p>
       )}
-    </motion.div>
+    </div>
   );
 };
 
