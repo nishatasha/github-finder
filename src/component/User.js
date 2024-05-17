@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../css/index.css';
 
-const token = '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';
+const token = '';
 
 const User = () => {
   const { username } = useParams();
