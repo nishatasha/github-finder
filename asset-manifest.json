@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/nishatasha/github-finder/static/css/main.b1307328.css",
-    "main.js": "/nishatasha/github-finder/static/js/main.d9aa2899.js",
-    "index.html": "/nishatasha/github-finder/index.html",
-    "main.b1307328.css.map": "/nishatasha/github-finder/static/css/main.b1307328.css.map",
-    "main.d9aa2899.js.map": "/nishatasha/github-finder/static/js/main.d9aa2899.js.map"
+    "main.css": "/github-finder/static/css/main.b1307328.css",
+    "main.js": "/github-finder/static/js/main.413a128e.js",
+    "index.html": "/github-finder/index.html",
+    "main.b1307328.css.map": "/github-finder/static/css/main.b1307328.css.map",
+    "main.413a128e.js.map": "/github-finder/static/js/main.413a128e.js.map"
   },
   "entrypoints": [
     "static/css/main.b1307328.css",
-    "static/js/main.d9aa2899.js"
+    "static/js/main.413a128e.js"
   ]
 }
