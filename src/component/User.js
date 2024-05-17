@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import '../css/index.css';
 
 // Read token from environment variables
-const token = process.env.REACT_APP_GITHUB_TOKEN;
+const token = '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';
 
 const User = () => {
   const { username } = useParams();
