@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nishatasha/github-finder.git/static/css/main.b1307328.css",
+    "main.js": "/nishatasha/github-finder.git/static/js/main.cd801279.js",
+    "index.html": "/nishatasha/github-finder.git/index.html",
+    "main.b1307328.css.map": "/nishatasha/github-finder.git/static/css/main.b1307328.css.map",
+    "main.cd801279.js.map": "/nishatasha/github-finder.git/static/js/main.cd801279.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1307328.css",
+    "static/js/main.cd801279.js"
+  ]
+}
