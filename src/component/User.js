@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../css/index.css';
 
-const token = '';
+const token = process.env.REACT_APP_GITHUB_TOKEN;
 
 const User = () => {
   const { username } = useParams();
