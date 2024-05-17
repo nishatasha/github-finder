@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "boxicons": "^2.1.4",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.2.4",
     "react": "^18.3.1",
     "react-boxicons": "^0.0.28",
