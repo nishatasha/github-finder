@@ -4,13 +4,15 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../css/index.css';
 
-const token = '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';
+// Read token from environment variables
+const token = process.env.REACT_APP_GITHUB_TOKEN;
 
 const User = () => {
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -18,15 +20,18 @@ const User = () => {
         const userResponse = await axios.get(`https://api.github.com/users/${username}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
+        console.log('User Response:', userResponse.data);
         setUser(userResponse.data);
 
         const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`, {
           headers: { Authorization: `Bearer ${token}` }
         });
+        console.log('Repos Response:', reposResponse.data);
         setRepos(reposResponse.data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setError('Failed to fetch user data');
         setLoading(false);
       }
     };
@@ -49,6 +54,8 @@ const User = () => {
     >
       {loading ? (
         <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
       ) : user ? (
         <div className="user-profile">
           <div className="user-info">
